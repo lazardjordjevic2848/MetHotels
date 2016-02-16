@@ -12,8 +12,8 @@
              need to add Hibernate configuration files, such as hibernate.cfg.xml. -->
         <dependency>
             <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry-core</artifactId>
-            <version>${tapestry-release-version}</version>
+            <artifactId>tapestry-hibernate</artifactId>
+            <version>5.4-beta-35</version>
         </dependency>
 
         <!-- Include the Log4j implementation for the SLF4J logging framework -->
@@ -23,6 +23,19 @@
             <version>${slf4j-release-version}</version>
         </dependency>
 
+   
+        
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.tapestry</groupId>

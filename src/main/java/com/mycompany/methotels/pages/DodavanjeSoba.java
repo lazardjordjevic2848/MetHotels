@@ -5,10 +5,12 @@
  */
 package com.mycompany.methotels.pages;
 
-import com.mycompany.methotels.data.Soba;
+import com.mycompany.methotels.entities.Soba;
 import java.util.ArrayList;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.Session;
 
 /**
  *
@@ -16,7 +18,7 @@ import org.apache.tapestry5.annotations.Property;
  */
 public class DodavanjeSoba {
 
-    @Persist
+    /*@Persist
     @Property
     private ArrayList<Soba> sobe;
     @Property
@@ -30,6 +32,31 @@ public class DodavanjeSoba {
 
     Object onSuccess() {
         sobe.add(soba);
+        return this;
+    }*/
+    
+    
+    
+    
+    @Property
+    private Soba soba;
+    @Inject
+    private Session session;
+    @Property
+    private ArrayList<Soba> sobe;
+
+    void onActivate() {
+        if (sobe == null) {
+            sobe = new ArrayList<Soba>();
+        }
+        // createCriteria metoda pravi Select * upit nad prosle?enom klasom
+        sobe = (ArrayList<Soba>) session.createCriteria(Soba.class).list();
+    }
+
+    @CommitAfter
+    Object onSuccess() {
+        // persist metoda ?uva objekatu bazi podataka
+        session.persist(soba);
         return this;
     }
     
