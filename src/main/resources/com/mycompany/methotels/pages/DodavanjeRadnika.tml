@@ -1,0 +1,12 @@
+<html t:type="layout" title="TapestryHibernateDemo Index"
+        t:sidebarTitle="Framework Version"
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        xmlns:p="tapestry:parameter">
+    <t:beaneditform object="radnik" exclude="id" >
+    </t:beaneditform>
+    <t:grid source="radnici" exclude="id" add="delete" row="oneradnik">
+        <p:deleteCell>
+            <t:actionlink t:id="delete" context="oneradnik.id">Delete</t:actionlink>
+        </p:deleteCell>
+    </t:grid>
+</html>

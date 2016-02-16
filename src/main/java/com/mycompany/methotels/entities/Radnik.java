@@ -22,10 +22,10 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * @author Laki
  */
 @Entity
-@Table(name = "soba")
+@Table(name = "radnik")
 @NamedQueries({
-    @NamedQuery(name = "Soba.findAll", query = "SELECT s FROM Soba s")})
-public class Soba implements Serializable {
+    @NamedQuery(name = "Radnik.findAll", query = "SELECT r FROM Radnik r")})
+public class Radnik implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,25 +34,12 @@ public class Soba implements Serializable {
     private Integer id;
     @Column(name = "ime")
     private String ime;
-    @Column(name = "sprat")
-    private Integer sprat;
-    @Column(name = "imaTv")
-    private Boolean imaTv;
-    @Column(name = "imaInternet")
-    private Boolean imaInternet;
-    @Column(name = "imaDjakuzi")
-    private Boolean imaDjakuzi;
-    @Column(name = "radId")
-    private Integer radId;
-    
 
-    //private Radnik radnik;
-    
     @Inject
-    public Soba() {
+    public Radnik() {
     }
 
-    public Soba(Integer id) {
+    public Radnik(Integer id) {
         this.id = id;
     }
 
@@ -72,46 +59,6 @@ public class Soba implements Serializable {
         this.ime = ime;
     }
 
-    public Integer getSprat() {
-        return sprat;
-    }
-
-    public void setSprat(Integer sprat) {
-        this.sprat = sprat;
-    }
-
-    public Boolean getImaTv() {
-        return imaTv;
-    }
-
-    public void setImaTv(Boolean imaTv) {
-        this.imaTv = imaTv;
-    }
-
-    public Boolean getImaInternet() {
-        return imaInternet;
-    }
-
-    public void setImaInternet(Boolean imaInternet) {
-        this.imaInternet = imaInternet;
-    }
-
-    public Boolean getImaDjakuzi() {
-        return imaDjakuzi;
-    }
-
-    public void setImaDjakuzi(Boolean imaDjakuzi) {
-        this.imaDjakuzi = imaDjakuzi;
-    }
-    
-    public Integer getRadId() {
-        return radId;
-    }
-
-    public void setRadId(Integer radid) {
-        this.radId = radid;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -122,10 +69,10 @@ public class Soba implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Soba)) {
+        if (!(object instanceof Radnik)) {
             return false;
         }
-        Soba other = (Soba) object;
+        Radnik other = (Radnik) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +81,8 @@ public class Soba implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.methotels.entities.Soba[ id=" + id + " ]";
+        return ime;
+        //return "com.mycompany.methotels.entities.Radnik[ id=" + id + " ]";
     }
     
 }
