@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -42,11 +44,10 @@ public class Soba implements Serializable {
     private Boolean imaInternet;
     @Column(name = "imaDjakuzi")
     private Boolean imaDjakuzi;
-    @Column(name = "radId")
-    private Integer radId;
     
-
-    //private Radnik radnik;
+    @JoinColumn(name = "radId", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Radnik radId;
     
     @Inject
     public Soba() {
@@ -104,11 +105,11 @@ public class Soba implements Serializable {
         this.imaDjakuzi = imaDjakuzi;
     }
     
-    public Integer getRadId() {
+    public Radnik getRadId() {
         return radId;
     }
 
-    public void setRadId(Integer radid) {
+    public void setRadId(Radnik radid) {
         this.radId = radid;
     }
 

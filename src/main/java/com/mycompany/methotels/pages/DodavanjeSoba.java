@@ -77,7 +77,7 @@ public class DodavanjeSoba {
     Object onSuccess() {
         // persist metoda ?uva objekatu bazi podataka
         //session.persist(soba);
-        soba.setRadId(radId.getId());
+        soba.setRadId(radId);
         sobaDao.dodajSobu(soba);
         return this;
     }
@@ -92,7 +92,7 @@ public class DodavanjeSoba {
     public String getRadnik() {
         System.out.println("getRadnik");
         if (onesoba.getRadId()!= null) {
-            return radnikDao.getRadnikById(onesoba.getRadId()).getIme();
+            return onesoba.getRadId().getIme();
         } else {
             return "";
         }

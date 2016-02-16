@@ -2,7 +2,7 @@
         t:sidebarTitle="Framework Version"
         xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         xmlns:p="tapestry:parameter">
-    <t:beaneditform object="soba" exclude="id">
+    <t:beaneditform object="soba" exclude="id" add="radId">
         <p:radId>
             <t:label for="radId"/>:
             <t:select t:blankLabel="Odaberi radnika" t:id="radId" encoder="encoder" model="radnici" validate="required"/>
