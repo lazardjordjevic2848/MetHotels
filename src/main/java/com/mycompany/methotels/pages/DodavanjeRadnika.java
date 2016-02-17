@@ -6,9 +6,11 @@
 package com.mycompany.methotels.pages;
 
 import com.mycompany.methotels.entities.Radnik;
+import com.mycompany.methotels.services.ProtectedPage;
 import com.mycompany.methotels.services.dao.RadnikDao;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -17,6 +19,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author Laki
  */
+@ProtectedPage
+@RolesAllowed(value={"Admin"})
 public class DodavanjeRadnika {
 
     @Property

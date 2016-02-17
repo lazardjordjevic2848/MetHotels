@@ -2,8 +2,12 @@ package com.mycompany.methotels.services;
 
 import com.mycompany.methotels.services.dao.RadnikDao;
 import com.mycompany.methotels.services.dao.RadnikDaoImpl;
+import com.mycompany.methotels.services.dao.RezervacijaDao;
+import com.mycompany.methotels.services.dao.RezervacijaDaoImpl;
 import com.mycompany.methotels.services.dao.SobaDao;
 import com.mycompany.methotels.services.dao.SobaDaoImpl;
+import com.mycompany.methotels.services.dao.UserDao;
+import com.mycompany.methotels.services.dao.UserDaoImpl;
 import java.io.IOException;
 
 import org.apache.tapestry5.*;
@@ -30,6 +34,8 @@ public class AppModule
     {
         binder.bind(SobaDao.class, SobaDaoImpl.class);
         binder.bind(RadnikDao.class,RadnikDaoImpl.class);
+        binder.bind(UserDao.class, UserDaoImpl.class);
+        binder.bind(RezervacijaDao.class, RezervacijaDaoImpl.class);
 
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
@@ -145,5 +151,9 @@ public class AppModule
         // within the pipeline.
 
         configuration.add("Timing", filter);
+    }
+
+    public void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
+        configuration.addInstance("PageProtectionFilter", PageProtectionFilter.class);
     }
 }

@@ -34,9 +34,16 @@
                 </t:loop>
             </ul>
             <span class="navbar-right">
-                <li>
-                    <t:pagelink page="login" class="btn btn-default navbar-btn">Sign in</t:pagelink>
-               	</li>
+                
+                    <t:if test="!loggedIn">
+                        <li>
+                            <t:pagelink page="login" class="btn btn-default navbar-btn">Sign in</t:pagelink>
+                        </li>
+                    </t:if>
+                    <t:if test="loggedIn">
+                        <t:actionlink t:id="logout" class="btn btn-default navbar-btn">Logout ${LoggedInEmail}</t:actionlink>
+                    </t:if>
+               	
             </span>
 
         </div><!--/.nav-collapse -->

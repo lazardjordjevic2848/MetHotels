@@ -1,0 +1,30 @@
+<html t:type="layout" title="MetHotels dodavanje sobe"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+    <t:beaneditform t:id="form" object="rez" exclude="id" add="userId,sobaId">
+        <t:errors/>
+        <p:userId>
+            <t:label for="userId"/>:
+            <t:select t:label="Odaberi klijenta" t:id="userId" 
+                      encoder="userEncoder" model="useri" validate="required"/>
+        </p:userId>
+        <p:sobaId>
+            <t:label for="sobaId"/>:
+            <t:select t:label="Odaberi sobu" t:id="sobaId" 
+                      encoder="sobaEncoder" model="sobe" validate="required"/>
+        </p:sobaId>
+        
+    </t:beaneditform>
+    <t:grid t:source="rezervacije" exclude="id" add="user,soba,delete" 
+            row="rowrezervacija">
+        <p:userCell>
+            ${RowUser}
+        </p:userCell>
+        <p:sobaCell>
+            ${RowSoba}
+        </p:sobaCell>
+        <p:deleteCell>
+            <t:actionlink t:id="delete" context="rowrezervacija.id">Delete</t:actionlink>
+        </p:deleteCell>
+    </t:grid>
+</html>

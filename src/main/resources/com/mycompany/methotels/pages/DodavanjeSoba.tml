@@ -4,7 +4,7 @@
         xmlns:p="tapestry:parameter">
     <t:beaneditform object="soba" exclude="id" add="radId">
         <p:radId>
-            <t:label for="radId"/>:
+            Radnik zaduzen za sobu:
             <t:select t:blankLabel="Odaberi radnika" t:id="radId" encoder="encoder" model="radnici" validate="required"/>
         </p:radId>
     </t:beaneditform>

@@ -31,9 +31,6 @@ public class Index
   @Symbol(SymbolConstants.TAPESTRY_VERSION)
   private String tapestryVersion;
 
-  @InjectPage
-  private About about;
-
   @Inject
   private Block block;
 
@@ -44,14 +41,6 @@ public class Index
     return eventContext.getCount() > 0 ?
         new HttpError(404, "Resource not found") :
         null;
-  }
-
-
-  Object onActionFromLearnMore()
-  {
-    about.setLearn("LearnMore");
-
-    return about;
   }
 
   @Log
