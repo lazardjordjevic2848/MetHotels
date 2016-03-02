@@ -41,13 +41,13 @@ create table USER
 @Table(name = "user")
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")})
-public class User implements Serializable {
+public class User extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    private Integer id;
+    private Integer id;*/
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "SIFRA")

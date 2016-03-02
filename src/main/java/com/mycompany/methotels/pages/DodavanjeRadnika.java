@@ -5,6 +5,7 @@
  */
 package com.mycompany.methotels.pages;
 
+import com.mycompany.methotels.components.GenericEditor;
 import com.mycompany.methotels.entities.Radnik;
 import com.mycompany.methotels.services.ProtectedPage;
 import com.mycompany.methotels.services.dao.RadnikDao;
@@ -21,7 +22,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 @ProtectedPage
 @RolesAllowed(value={"Admin"})
-public class DodavanjeRadnika {
+public class DodavanjeRadnika /*extends GenericEditor<Radnik>*/{
 
     @Property
     private Radnik radnik;

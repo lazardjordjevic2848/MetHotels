@@ -41,6 +41,18 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
         </dependency>
+        
+        <dependency>
+         <groupId>org.got5</groupId>
+         <artifactId>tapestry5-jquery</artifactId>
+         <version>4.0.0</version>
+        </dependency>
+        
+        <!--<dependency>
+            <groupId>org.got5</groupId>
+            <artifactId>tapestry5-jquery</artifactId>
+            <version>4.0.1-SNAPSHOT</version>
+        </dependency> -->
 
         <dependency>
             <groupId>org.apache.tapestry</groupId>
@@ -155,6 +167,41 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <id>apache-staging</id>
             <url>https://repository.apache.org/content/groups/staging/</url>
         </repository>
+        
+        
+            <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                    <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>oss—sonatype-snapshot-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots
+            </url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        
+        <!--
+        <repository>
+            <id>devlab722-repo</id>
+            <url>http://nexus.devlab722.net/nexus/content/repositories/releases</url>
+            <snapshots>
+            <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+        <id>devlab722-snapshot-repo</id>
+            <url>http://nexus.devlab722.net/nexus/content/repositories/snapshots</url>
+            <releases>
+            <enabled>false</enabled>
+            </releases>
+        </repository> -->
+        
     </repositories>
 
     <properties>

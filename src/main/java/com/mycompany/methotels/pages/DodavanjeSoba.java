@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import org.apache.tapestry5.ValueEncoder;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
@@ -28,6 +29,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class DodavanjeSoba {
 
     @Property
+    @Persist
     private Soba soba;
     @Property
     private Soba onesoba;
@@ -80,9 +82,13 @@ public class DodavanjeSoba {
     Object onSuccess() {
         // persist metoda ?uva objekatu bazi podataka
         //session.persist(soba);
-        soba.setRadId(radId);
-        sobaDao.dodajSobu(soba);
+        sobaDao.dodajIliUpdatujSobau(soba);
+        soba = new Soba();
         return this;
+        
+        /*soba.setRadId(radId);
+        sobaDao.dodajSobu(soba);
+        return this;*/
     }
     
     
@@ -99,6 +105,14 @@ public class DodavanjeSoba {
         } else {
             return "";
         }
+    }
+    
+    @CommitAfter
+    Object onActionFromEdit(Soba soba)
+    {
+        this.soba = soba;
+        //radId = soba.getRadId();
+        return this;
     }
 }
 

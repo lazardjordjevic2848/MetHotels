@@ -27,13 +27,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 @Table(name = "soba")
 @NamedQueries({
     @NamedQuery(name = "Soba.findAll", query = "SELECT s FROM Soba s")})
-public class Soba implements Serializable {
+public class Soba extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    private Integer id;
+    private Integer id;*/
     @Column(name = "ime")
     private String ime;
     @Column(name = "sprat")

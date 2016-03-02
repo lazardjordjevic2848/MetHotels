@@ -40,4 +40,10 @@ public class SobaDaoImpl implements SobaDao {
         Soba soba = (Soba) session.createCriteria(Soba.class).add(Restrictions.eq("id", id)).uniqueResult();
         session.delete(soba);
     }
+    
+    @Override
+    public void dodajIliUpdatujSobau(Soba soba)
+    {
+        session.merge(soba);
+    }
 }

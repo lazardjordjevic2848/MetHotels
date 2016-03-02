@@ -1,5 +1,7 @@
 package com.mycompany.methotels.services;
 
+import com.mycompany.methotels.services.dao.GenericDao;
+import com.mycompany.methotels.services.dao.GenericDaoImpl;
 import com.mycompany.methotels.services.dao.RadnikDao;
 import com.mycompany.methotels.services.dao.RadnikDaoImpl;
 import com.mycompany.methotels.services.dao.RezervacijaDao;
@@ -36,6 +38,8 @@ public class AppModule
         binder.bind(RadnikDao.class,RadnikDaoImpl.class);
         binder.bind(UserDao.class, UserDaoImpl.class);
         binder.bind(RezervacijaDao.class, RezervacijaDaoImpl.class);
+        binder.bind(GenericDao.class,GenericDaoImpl.class);
+
 
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 

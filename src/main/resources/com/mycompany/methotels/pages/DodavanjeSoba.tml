@@ -8,13 +8,17 @@
             <t:select t:blankLabel="Odaberi radnika" t:id="radId" encoder="encoder" model="radnici" validate="required"/>
         </p:radId>
     </t:beaneditform>
-    <t:grid source="sobe" exclude="id" add="delete,radnik" row="onesoba">
+    <t:grid source="sobe" exclude="id" add="radnik,edit,delete" row="onesoba">
+        <p:radnikCell>
+            ${getRadnik()}
+        </p:radnikCell>
+        <p:editCell>
+            <t:actionlink t:id="edit" context="onesoba">Edit</t:actionlink>
+        </p:editCell>
         <p:deleteCell>
             <t:actionlink t:id="delete" context="onesoba.id">Delete</t:actionlink>
         </p:deleteCell>
-        <p:radnikCell>
-        ${getRadnik()}
-        </p:radnikCell>
+        
     </t:grid>
 
 </html>

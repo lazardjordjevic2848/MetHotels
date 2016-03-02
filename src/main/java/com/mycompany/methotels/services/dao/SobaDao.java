@@ -18,4 +18,5 @@ public interface SobaDao {
     public Soba getSobaById(Integer id);
     public void dodajSobu(Soba soba);
     public void obrisiSobu(Integer id);
+    public void dodajIliUpdatujSobau(Soba soba);
 }
