@@ -27,9 +27,9 @@ import com.mycompany.methotels.components.GenericEditor;
 
 @ProtectedPage
 @RolesAllowed(value={"Admin"})
-public class RegistracijaKorisnika extends GenericEditor<User> {
+/*public class RegistracijaKorisnika extends GenericEditor<User> {
 }
-/*
+*/
 public class RegistracijaKorisnika {
 
     @Property
@@ -44,7 +44,7 @@ public class RegistracijaKorisnika {
     @Component
     private BeanEditForm form;
 
-    public String getMD5Hash(String yourString) {
+    public static String getMD5Hash(String yourString) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(yourString.getBytes());
@@ -73,4 +73,3 @@ public class RegistracijaKorisnika {
         }
     }
 }
-*/

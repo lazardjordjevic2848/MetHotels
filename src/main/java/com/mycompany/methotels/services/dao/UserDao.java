@@ -22,4 +22,6 @@ public interface UserDao {
     public List<User> getListaUseraPoEmailu(String email);
     public abstract int allActiveSizeUseri();
     public abstract List<User> loadActiveFromTo(int from);
+    
+    public abstract User merge(User user);
 }

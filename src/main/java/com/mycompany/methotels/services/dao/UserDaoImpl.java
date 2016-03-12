@@ -56,7 +56,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User registerUser(User user) {
-        return (User) session.merge(user);
+        session.saveOrUpdate(user);
+	return user;
+        //return (User) session.merge(user);
     }
 
     @Override
@@ -76,5 +78,11 @@ public class UserDaoImpl implements UserDao {
         int page = (from - 1) * 3;
         List<User> lista = session.createCriteria(User.class).setFirstResult(page).setMaxResults(3).addOrder(Order.asc("id")).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
         return lista;
+    }
+    
+    @Override
+    public User merge(User user)
+    {
+        return (User) session.merge(user);
     }
 }

@@ -1,6 +1,8 @@
 package com.mycompany.methotels.services;
 
 import com.mycompany.methotels.pages.PageProtectionFilter;
+import com.mycompany.methotels.restser.UserServiceInterface;
+import com.mycompany.methotels.restser.UserWebService;
 import com.mycompany.methotels.services.dao.GenericDao;
 import com.mycompany.methotels.services.dao.GenericDaoImpl;
 import com.mycompany.methotels.services.dao.RadnikDao;
@@ -14,11 +16,15 @@ import com.mycompany.methotels.services.dao.UserDaoImpl;
 import java.io.IOException;
 
 import org.apache.tapestry5.*;
+import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.*;
@@ -40,7 +46,7 @@ public class AppModule
         binder.bind(UserDao.class, UserDaoImpl.class);
         binder.bind(RezervacijaDao.class, RezervacijaDaoImpl.class);
         binder.bind(GenericDao.class,GenericDaoImpl.class);
-
+        binder.bind(UserServiceInterface.class, UserWebService.class);
 
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
@@ -48,6 +54,18 @@ public class AppModule
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
+    }
+    
+    @Match("*User*")
+    public static void adviseTransactionally(
+            HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver) {
+        advisor.addTransactionCommitAdvice(receiver);
+    }
+
+    @Contribute(javax.ws.rs.core.Application.class)
+    public static void configureRestResources(Configuration<Object> singletons,
+            UserServiceInterface userWeb) {
+        singletons.add(userWeb);
     }
 
     public static void contributeFactoryDefaults(
