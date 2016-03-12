@@ -51,10 +51,27 @@ public class GenericEditor<T extends AbstractEntity> {
     @SuppressWarnings("unchecked")
     private Class<T> klasa = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
+    
+    void onActivate() {
+        System.out.println("onActivate");
+        /*if (listaGenerika == null) {
+            listaGenerika = new List<T>();
+        }*/
+        //this.listaGenerika = genericDao.loadAllActive(klasa);
+//        drzave = drzaveDao.getListaSvihDrzava();
+    }
+
     @PageLoaded
+    public void onLoad() {
+        this.listaGenerika = genericDao.loadAllActive(klasa);       
+    }
+    
+
+
+    /*@PageLoaded
     public void pageLoaded() {
         this.listaGenerika = genericDao.loadAllActive(klasa);
-    }
+    }*/
 
     @SuppressWarnings({"unchecked"})
     public void onActivate(Integer beanId) throws Exception {
@@ -78,6 +95,7 @@ public class GenericEditor<T extends AbstractEntity> {
 
     @CommitAfter
     Object onActionFromBrisanje(int id) {
+        this.listaGenerika.remove((T) genericDao.getElementById(id, klasa)); 
         genericDao.delete(id, klasa);
         return this;
     }
@@ -91,12 +109,20 @@ public class GenericEditor<T extends AbstractEntity> {
     @SuppressWarnings("unchecked")
     @CommitAfter
     public Object onSuccess() throws Exception {
+        
+        /*this.listaGenerika.add((T) genericDao.merge(bean));
+        try {
+            bean = (T) klasa.newInstance();
+        } catch (Exception ex) {
+        }
+        return this;*/
+        
         T toAdd = (T) genericDao.saveOrUpdate(bean);
-        /*
-        Proveravamo da li lista ve? sadrži element
-        Ako sadrži onda ga dodaje u listu, u suprotnom, 
-        prolazi kroz listu, nalazi element i menja ga novim elementom
-         */
+        
+        //Proveravamo da li lista ve? sadrži element
+        //Ako sadrži onda ga dodaje u listu, u suprotnom, 
+        //prolazi kroz listu, nalazi element i menja ga novim elementom
+         
         if (!listaGenerika.contains(toAdd)) {
             listaGenerika.add(toAdd);
         } else {

@@ -28,6 +28,11 @@ public class GenericDaoImpl<T extends AbstractEntity> implements GenericDao<T> {
     private Session hibernate;
 
     @Override
+    public AbstractEntity merge(AbstractEntity obj) {
+        return (T) hibernate.merge(obj);
+    }
+    
+    @Override
 	public T saveOrUpdate(T toUpdate) {
 		hibernate.saveOrUpdate(toUpdate);
 		return toUpdate;

@@ -15,6 +15,8 @@ import java.util.List;
  */
 
 public interface GenericDao <T extends AbstractEntity> {
+    public abstract T merge(T obj);
+    
     public abstract T saveOrUpdate(T obj);
 
     public abstract T delete(Integer idOfObj, Class klasa);
