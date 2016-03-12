@@ -83,6 +83,7 @@ public class DodavanjeSoba {
     Object onSuccess() {
         // persist metoda ?uva objekatu bazi podataka
         //session.persist(soba);
+        soba.setRadId(radId);
         sobaDao.dodajIliUpdatujSobau(soba);
         soba = new Soba();
         return this;

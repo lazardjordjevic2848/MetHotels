@@ -1,5 +1,6 @@
 package com.mycompany.methotels.services;
 
+import com.mycompany.methotels.pages.PageProtectionFilter;
 import com.mycompany.methotels.services.dao.GenericDao;
 import com.mycompany.methotels.services.dao.GenericDaoImpl;
 import com.mycompany.methotels.services.dao.RadnikDao;

@@ -8,7 +8,9 @@ package com.mycompany.methotels.services.dao;
 import com.mycompany.methotels.entities.User;
 import java.util.List;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -55,5 +57,24 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User registerUser(User user) {
         return (User) session.merge(user);
+    }
+
+    @Override
+    public List<User> getListaUseraPoEmailu(String email) {
+        return session.createCriteria(User.class).add(Restrictions.ilike("email", email + "%")).list();
+    }
+    
+    @Override
+    public int allActiveSizeUseri() {
+        Long l = (Long) session.createCriteria(User.class).setProjection(Projections.rowCount()).uniqueResult();
+        return l.intValue();
+    }
+            
+    @Override
+    public List<User> loadActiveFromTo(int from)
+    {
+        int page = (from - 1) * 3;
+        List<User> lista = session.createCriteria(User.class).setFirstResult(page).setMaxResults(3).addOrder(Order.asc("id")).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+        return lista;
     }
 }

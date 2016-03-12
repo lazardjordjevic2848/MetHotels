@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.methotels.services;
+package com.mycompany.methotels.pages;
 
 import com.mycompany.methotels.data.Role;
 import com.mycompany.methotels.entities.User;
 import com.mycompany.methotels.pages.Index;
 import com.mycompany.methotels.pages.Login;
+import com.mycompany.methotels.services.ProtectedPage;
 import java.io.IOException;
 import java.io.OutputStream;
 import javax.annotation.security.RolesAllowed;

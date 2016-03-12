@@ -48,7 +48,7 @@ public class Layout {
 
     public String[] getPageNames() {
         if(loggedInUser.getRola() == Role.Admin)
-            return new String[]{"Index", "DodavanjeSoba", "DodavanjeRadnika", "RegistracijaKorisnika", "Rezervisanje"};
+            return new String[]{"Index", "DodavanjeSoba", "DodavanjeRadnika", "RegistracijaKorisnika", "Rezervisanje","PretragaUseraAjaxJquery"};
         else return  new String[]{"Index"};
     }
 
