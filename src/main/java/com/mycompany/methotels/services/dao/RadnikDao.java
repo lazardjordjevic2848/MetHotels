@@ -17,4 +17,6 @@ public interface RadnikDao {
     public Radnik getRadnikById(Integer id);
     public void dodajRadnika(Radnik radnik);
     public void obrisiRadnika(Integer id);
+    public void dodajIliUpdatujRadnika(Radnik radnik);
+
 }

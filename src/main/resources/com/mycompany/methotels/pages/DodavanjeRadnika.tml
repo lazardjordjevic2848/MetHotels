@@ -1,0 +1,25 @@
+<html t:type="layout" title="TapestryHibernateDemo Index"
+        t:sidebarTitle="Framework Version"
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        xmlns:p="tapestry:parameter">
+
+    <t:zone t:id="formZone">
+        <t:beaneditform object="radnik" exclude="id" t:zone="zoneRadnici">
+        </t:beaneditform>
+    </t:zone>
+
+    <t:zone t:id="zoneRadnici">
+        <t:grid source="radnici" exclude="id" add="delete,edit" row="oneradnik" t:inplace="true">
+            <p:imeCell>
+                <div t:id="ime" value="oneradnik.ime" t:type="jquery/inPlaceEditor" t:context="oneradnik.id"/>
+            </p:imeCell>
+            <p:editCell>
+                <t:actionlink t:id="edit" context="oneradnik" t:zone="formZone">Edit</t:actionlink>
+            </p:editCell>
+            <p:deleteCell>
+                <t:actionlink t:id="delete" context="oneradnik.id" t:mixins="Confirm" t:zone="zoneRadnici">Delete</t:actionlink>
+            </p:deleteCell>
+        </t:grid>
+    </t:zone>
+
+</html>

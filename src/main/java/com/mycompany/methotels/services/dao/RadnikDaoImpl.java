@@ -43,4 +43,10 @@ public class RadnikDaoImpl implements RadnikDao {
         return session.createCriteria(Radnik.class).list();
     }
     
+    @Override
+    public void dodajIliUpdatujRadnika(Radnik radnik)
+    {
+        session.merge(radnik);
+    }
+    
 }
