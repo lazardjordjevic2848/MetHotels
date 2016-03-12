@@ -19,6 +19,8 @@ import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import com.mycompany.methotels.components.GenericEditor;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,12 +40,21 @@ public class RegistracijaKorisnika {
     private User loggedInUser;
     @Inject
     private UserDao userDao;
+    @Property
+    private List<User> korisnici;
     //@Property
     //@Validate("required")
     //private Role userRola;
     @Component
     private BeanEditForm form;
 
+    void onActivate() {
+        if (korisnici == null) {
+            korisnici = new ArrayList<User>();
+        }
+        korisnici = userDao.getListaSvihUsera();
+    }
+    
     public static String getMD5Hash(String yourString) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
