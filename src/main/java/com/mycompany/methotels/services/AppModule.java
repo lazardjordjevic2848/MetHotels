@@ -1,6 +1,5 @@
 package com.mycompany.methotels.services;
 
-import com.mycompany.methotels.pages.PageProtectionFilter;
 import com.mycompany.methotels.restser.UserServiceInterface;
 import com.mycompany.methotels.restser.UserWebService;
 import com.mycompany.methotels.services.dao.GenericDao;
@@ -13,7 +12,11 @@ import com.mycompany.methotels.services.dao.SobaDao;
 import com.mycompany.methotels.services.dao.SobaDaoImpl;
 import com.mycompany.methotels.services.dao.UserDao;
 import com.mycompany.methotels.services.dao.UserDaoImpl;
+
+
 import java.io.IOException;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.realm.Realm;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
@@ -23,6 +26,7 @@ import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Local;
 import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
@@ -32,6 +36,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.StackExtension;
 import org.apache.tapestry5.services.javascript.StackExtensionType;
 import org.slf4j.Logger;
+
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
@@ -48,13 +53,24 @@ public class AppModule
         binder.bind(GenericDao.class,GenericDaoImpl.class);
         binder.bind(UserServiceInterface.class, UserWebService.class);
         binder.bind(FacebookService.class);
-
+        binder.bind(AuthorizingRealm.class, UserRealm.class).withId(UserRealm.class.getSimpleName());
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
         // Make bind() calls on the binder object to define most IoC services.
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
+    }
+    
+    /*@Contribute(WebSecurityManager.class)
+public static void addRealms(Configuration<Realm> configuration) {
+	ExtendedPropertiesRealm realm = new ExtendedPropertiesRealm("classpath:shiro-users.properties");
+	configuration.add(realm);
+}*/
+    
+    public static void contributeWebSecurityManager(Configuration<Realm> configuration,
+            @InjectService("UserRealm") AuthorizingRealm userRealm) {
+        configuration.add(userRealm);
     }
     
     @Match("*User*")
@@ -82,6 +98,7 @@ public class AppModule
         // This is something that should be removed when going to production, but is useful
         // in the early stages of development.
         configuration.override(SymbolConstants.PRODUCTION_MODE, false);
+        configuration.override(SymbolConstants.HMAC_PASSPHRASE, 0);
     }
 
     public static void contributeApplicationDefaults(
@@ -96,7 +113,7 @@ public class AppModule
 
               // You should change the passphrase immediately; the HMAC passphrase is used to secure
         // the hidden field data stored in forms to encrypt and digitally sign client-side data.
-        configuration.add(SymbolConstants.HMAC_PASSPHRASE, "change this immediately");
+        //configuration.add(SymbolConstants.HMAC_PASSPHRASE, "change this immediately");
     }
 
 	/**
@@ -109,7 +126,7 @@ public class AppModule
         // Support for jQuery is new in Tapestry 5.4 and will become the only supported
         // option in 5.5.
 		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
-		configuration.add(SymbolConstants.BOOTSTRAP_ROOT, "context:mybootstrap");
+		//configuration.add(SymbolConstants.BOOTSTRAP_ROOT, "context:mybootstrap");
 		configuration.add(SymbolConstants.MINIFICATION_ENABLED, true);
 	}
 
@@ -165,6 +182,8 @@ public class AppModule
      * from the same module.  Without @Local, there would be an error due to the other service(s)
      * that implement RequestFilter (defined in other modules).
      */
+    
+    
     @Contribute(RequestHandler.class)
     public void addTimingFilter(OrderedConfiguration<RequestFilter> configuration,
      @Local
@@ -177,7 +196,16 @@ public class AppModule
         configuration.add("Timing", filter);
     }
 
-    public void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
+    /*public void contributeComponentRequestHandler(OrderedConfiguration<ComponentRequestFilter> configuration) {
         configuration.addInstance("PageProtectionFilter", PageProtectionFilter.class);
+    }*/
+    
+    public void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration,
+            @Local RequestFilter filter) {
+        // Each contribution to an ordered configuration has a name, When necessary, you may
+        // set constraints to precisely control the invocation order of the contributed filter
+        // within the pipeline.
+
+        configuration.add("Timing", filter);
     }
 }

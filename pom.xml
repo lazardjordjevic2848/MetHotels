@@ -75,6 +75,12 @@
             <version>1.6.11</version>
         </dependency>
         
+        <dependency>
+            <groupId>org.tynamo</groupId>
+            <artifactId>tapestry-security</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+        
         <!--<dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>

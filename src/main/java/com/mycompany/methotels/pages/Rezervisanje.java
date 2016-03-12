@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
@@ -30,8 +31,9 @@ import org.hibernate.Session;
  *
  * @author Laki
  */
-@ProtectedPage
-@RolesAllowed(value={"Admin"})
+//@ProtectedPage
+@RequiresRoles("Admin")
+//@RolesAllowed(value={"Admin"})
 public class Rezervisanje {
     @Property
     private Rezervacija rez;

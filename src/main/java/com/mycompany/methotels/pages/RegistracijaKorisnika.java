@@ -21,14 +21,16 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import com.mycompany.methotels.components.GenericEditor;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 
 /**
  *
  * @author Laki
  */
 
-@ProtectedPage
-@RolesAllowed(value={"Admin"})
+//@ProtectedPage
+@RequiresRoles("Admin")
+//@RolesAllowed(value={"Admin"})
 /*public class RegistracijaKorisnika extends GenericEditor<User> {
 }
 */
