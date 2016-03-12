@@ -5,10 +5,12 @@
  */
 package com.mycompany.methotels.services.dao;
 
-
 import com.mycompany.methotels.entities.AbstractEntity;
+
 import java.util.Collections;
 import java.util.List;
+
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -26,9 +28,10 @@ public class GenericDaoImpl<T extends AbstractEntity> implements GenericDao<T> {
     private Session hibernate;
 
     @Override
-    public T merge(T obj) {
-        return (T) hibernate.merge(obj);
-    }
+	public T saveOrUpdate(T toUpdate) {
+		hibernate.saveOrUpdate(toUpdate);
+		return toUpdate;
+	}
 
     @Override
     public T delete(Integer idOfObj, Class klasa) {

@@ -6,7 +6,7 @@
     </t:beaneditform>
     <t:grid source="radnici" exclude="id" add="delete" row="oneradnik">
         <p:deleteCell>
-            <t:actionlink t:id="delete" context="oneradnik.id">Delete</t:actionlink>
+            <t:actionlink t:id="delete" context="oneradnik.id" t:mixins="Confirm">Delete</t:actionlink>
         </p:deleteCell>
     </t:grid>
 </html>

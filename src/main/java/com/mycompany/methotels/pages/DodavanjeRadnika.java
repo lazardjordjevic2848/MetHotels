@@ -8,13 +8,7 @@ package com.mycompany.methotels.pages;
 import com.mycompany.methotels.components.GenericEditor;
 import com.mycompany.methotels.entities.Radnik;
 import com.mycompany.methotels.services.ProtectedPage;
-import com.mycompany.methotels.services.dao.RadnikDao;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.security.RolesAllowed;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.hibernate.annotations.CommitAfter;
-import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  *
@@ -22,7 +16,12 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 @ProtectedPage
 @RolesAllowed(value={"Admin"})
-public class DodavanjeRadnika /*extends GenericEditor<Radnik>*/{
+public class DodavanjeRadnika extends GenericEditor<Radnik> {
+	
+}
+
+/*
+public class DodavanjeRadnika {
 
     @Property
     private Radnik radnik;
@@ -51,4 +50,4 @@ public class DodavanjeRadnika /*extends GenericEditor<Radnik>*/{
         radnikDao.obrisiRadnika(id);
         return this;
     }
-}
+}*/

@@ -24,6 +24,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author Laki
  */
+
 @ProtectedPage
 @RolesAllowed(value={"Admin"})
 public class DodavanjeSoba {

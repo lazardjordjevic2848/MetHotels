@@ -18,13 +18,18 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import com.mycompany.methotels.components.GenericEditor;
 
 /**
  *
  * @author Laki
  */
+
 @ProtectedPage
 @RolesAllowed(value={"Admin"})
+public class RegistracijaKorisnika extends GenericEditor<User> {
+}
+/*
 public class RegistracijaKorisnika {
 
     @Property
@@ -67,17 +72,5 @@ public class RegistracijaKorisnika {
             return null;
         }
     }
-    
-    /*public boolean getIsAdminLoggedIn() {
-        return loggedInUser.getRola() == Role.Admin;
-    }*/
-
-    // Podrazumevani tip korisnika treba da bude Korisnik, a ne Admin
-    /*@SetupRender
-    void initUserRola() {
-        if (this.userRola == null) {
-            this.userRola = Role.Korisnik;
-        }
-    }*/
-
 }
+*/
