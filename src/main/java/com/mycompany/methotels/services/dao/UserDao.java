@@ -18,7 +18,8 @@ public interface UserDao {
     public boolean checkIfEmailExists(String email);
     public List<User> getListaSvihUsera();
     public User getUserById(Integer id);
-    
+    public User getUserByEmail(String email);
+
     public List<User> getListaUseraPoEmailu(String email);
     public abstract int allActiveSizeUseri();
     public abstract List<User> loadActiveFromTo(int from);

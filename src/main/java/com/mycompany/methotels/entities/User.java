@@ -54,7 +54,9 @@ public class User extends AbstractEntity implements Serializable {
     private String email;
     @Column(name = "SIFRA")
     private String sifra;
-    
+    @Column(name = "FACEBOOK_ID")
+    private String facebookId;
+
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLA")
@@ -72,6 +74,13 @@ public class User extends AbstractEntity implements Serializable {
         this.id = id;
     }
 
+    public User(String email, String sifra, Role rola, String facebookId) {
+        this.email = email;
+        this.sifra = sifra;
+        this.rola = rola;
+        this.facebookId = facebookId;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -109,6 +118,14 @@ public class User extends AbstractEntity implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 
     @Override

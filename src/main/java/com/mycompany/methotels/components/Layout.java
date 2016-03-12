@@ -2,6 +2,7 @@ package com.mycompany.methotels.components;
 
 import com.mycompany.methotels.data.Role;
 import com.mycompany.methotels.entities.User;
+import com.mycompany.methotels.services.FacebookServiceInformation;
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.*;
@@ -40,6 +41,13 @@ public class Layout {
     @SessionState
     private User loggedInUser;
 
+    @SessionState
+    private FacebookServiceInformation facebookServiceInformation;
+    @SessionState
+    private FacebookServiceInformation information;
+    @SessionState
+    private com.restfb.types.User userfb;
+    
     public String getClassForPageName() {
         return resources.getPageName().equalsIgnoreCase(pageName)
                 ? "active"
@@ -61,6 +69,9 @@ public class Layout {
 
     public void onActionFromLogout() {
         loggedInUser = null;
+        facebookServiceInformation = null;
+        information= null;
+        userfb= null;
     }
 
     public String getLoggedInEmail() {

@@ -47,6 +47,7 @@ public class AppModule
         binder.bind(RezervacijaDao.class, RezervacijaDaoImpl.class);
         binder.bind(GenericDao.class,GenericDaoImpl.class);
         binder.bind(UserServiceInterface.class, UserWebService.class);
+        binder.bind(FacebookService.class);
 
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
